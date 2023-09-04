@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    
+  </head>
+  <body>
+  <a style="padding-right:15px;" class="btn btn-primary" href="/" role="button"> Home </a>
+ <div class="container" style="border: 1px solid green;text-align:center">
+    <h1> MyCart</h1>
+    {% if myproducts | length ==0 %}
+    <h5> No Prducts found. Add the new exciting products now....! </h5>
+    <a href=/product?uid={{uid}} method="GET"> Shop Now..... </a>
+    {% endif %}
+
+    {% if myproducts | length != 0 %}
+    <h3> Hello User:{{uid}},       Take a view on your shopping...</h3>
+      <table id = "all-students" style="border:1px solid;margin:0 auto"><br> 
+      <h3>
+             <tr style="background-color:Pink; font-size:20px">
+                <th>Category</th>
+                <th>Product Name</th>
+                <th>Volume Order</th>
+                <th>Unit</th>
+                <th> </th>
+              </tr>
+        </h3>
+        {%  for row in myproducts %}
+          <tr style="background-color:#90EE90">
+            <td>{{row["category"]}}</td>
+            <td>{{row["product_name"]}}</td>
+            <td>{{row["volume_order"]}}</td>
+            <td>{{row["unit"]}}</td>
+            
+            <td>
+<a href=/update_mycart?uid={{uid}}&pname={{row["product_name"]}} type="button">Update</a>
+<a href=/delete_mycart?uid={{uid}}&pname={{row["product_name"]}} type="button"> Delete </a>
+            </td>
+          </tr>
+        {% endfor %}
+   
+    </table><br><br><br><br>
+    <h3> Total Amount: </h3>
+    
+    <script type="text/javascript">
+    console.log("hii script");
+    var sum=0.00;
+    
+    document.write("<p>"+ "Rupee: "+ sum +"</p>");
+    </script>
+    
+    <div style="border: 1px solid black">
+    <a href=/product?uid={{uid}} method="GET" role="button"> Shop More </a>
+    </div>
+    {% endif %}
+    </div>
+    <br><br>
+    
+  </body>
+</html>
